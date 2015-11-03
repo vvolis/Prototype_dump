@@ -12,7 +12,8 @@ public class Observatory : MonoBehaviour, Receiver
     public void Activate()
     {
         this.GetComponent<AudioSource>().PlayOneShot(clip1);
-        Destroy(this.gameObject, 0.7F);
+        this.GetComponent<Animator>().Play("Observatory");
+        Destroy(this.gameObject, 0.9F);
     }
     public void RayHit()
     {
