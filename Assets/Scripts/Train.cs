@@ -5,10 +5,13 @@ public class Train : MonoBehaviour {
 
     public bool arrived;
     public float speed;
+    public AudioClip horn;
     // This dude fires on setting enabled!
     void Start () 
     {
         arrived = false;
+        this.GetComponent<AudioSource>().PlayOneShot(horn);
+        this.GetComponent<AudioSource>().time= 2;
         Debug.Log("Train has arrived");
     }
 
@@ -24,6 +27,7 @@ public class Train : MonoBehaviour {
     {
         Debug.Log("collided:" + other.name);
         if (other.gameObject.name == "stationTrig") {
+            //this.GetComponent<AudioSource>().PlayOneShot(horn);
             arrived = true;
         }
     }

@@ -5,14 +5,11 @@ using System.Collections.Generic;
 public class Lamps : MonoBehaviour {
 
     public Transform[] children;
+    public AudioClip shutDown;
     // Use this for initialization
-    void Start () 
+    void Start ()
     {
-	    List<Transform> temp = new List<Transform>();
-        foreach (Transform child in this.transform) {
-            temp.Add(child);
-        }
-        children = temp.ToArray();
+
     }
 
     public void SelfDestruct()
@@ -22,13 +19,13 @@ public class Lamps : MonoBehaviour {
 
     IEnumerator Destroyer()
     {   int i=0;
+        Transform audioS = this.transform.Find("AudioSource");
         while (i<children.Length) 
         {
-            if ((i + 1) % 2 == 0) {
-                Destroy(children[i].gameObject);
-                Destroy(children[i-1].gameObject);
-                yield return new WaitForSeconds(0.3F);
-            }
+            audioS.position = new Vector3(audioS.position.x, audioS.position.y, children[i].position.z + 225);
+            Destroy(children[i].gameObject);
+            audioS.GetComponent<AudioSource>().PlayOneShot(shutDown);
+            yield return new WaitForSeconds(0.3F);
             i++;
         }
     }
