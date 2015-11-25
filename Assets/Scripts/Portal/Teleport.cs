@@ -8,6 +8,7 @@ using System.Collections.Generic;
 public class Teleport : MonoBehaviour {
 	
 	public Transform OtherEnd;
+    public GameObject player;
 	HashSet<Collider> colliding = new HashSet<Collider>();
 
 	// Use this for initialization
@@ -21,10 +22,22 @@ public class Teleport : MonoBehaviour {
 	}
 	
 	void OnTriggerEnter(Collider other) {
-        Debug.Log("Portal triggered!");
-		if (!colliding.Contains(other)) {
-			
-			
+        if (other.name == "Player") 
+        {
+            Quaternion q1 = Quaternion.FromToRotation(transform.up, OtherEnd.up);
+            Quaternion q2 = Quaternion.FromToRotation(-transform.up, OtherEnd.up);
+            Vector3 newPos = OtherEnd.position + q2 * (other.transform.position - transform.position);// + OtherEnd.transform.up * 2;;
+            other.transform.position = newPos;
+            other.GetComponent<PortalManager>().DisablePortals();
+        }
+
+
+
+
+
+
+		/*if (!colliding.Contains(other)) {
+
 			Quaternion q1 = Quaternion.FromToRotation(transform.up, OtherEnd.up);
 			Quaternion q2 = Quaternion.FromToRotation(-transform.up, OtherEnd.up);
 			
@@ -49,9 +62,11 @@ public class Teleport : MonoBehaviour {
 				other.transform.LookAt(other.transform.position + q2 * fwd, OtherEnd.transform.forward);
 			}
 		}
+
+        player.GetComponent<PortalManager>().DisablePortals();*/
 	}
 	
 	void OnTriggerExit(Collider other) {
-		colliding.Remove(other);
+		//colliding.Remove(other);
 	}
 }
