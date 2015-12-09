@@ -15,7 +15,7 @@ public class Interactor : MonoBehaviour {
             Receiver hitReceiver = hit.transform.GetComponent<Receiver>();
             if (hitReceiver != null) 
             {
-                hitReceiver.RayHit();
+                hitReceiver.RayHit(hit.distance);
                 if (Input.GetKeyDown(KeyCode.E)) {
                     hit.transform.GetComponent<Receiver>().Activate();
                 }

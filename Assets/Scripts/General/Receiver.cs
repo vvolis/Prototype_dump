@@ -4,6 +4,6 @@ using UnityEngine.UI;
 
 public interface Receiver
 {
-    void RayHit();
+    void RayHit(float distance);
     void Activate();
 }

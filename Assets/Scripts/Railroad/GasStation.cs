@@ -11,7 +11,7 @@ public class GasStation : MonoBehaviour, Receiver
     {
 
     }
-    public void RayHit()
+    public void RayHit(float distance)
     {
         train.SetActive(true);
         player.GetComponent<PortalManager>().EnablePortals();

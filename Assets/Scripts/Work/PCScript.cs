@@ -29,7 +29,7 @@ public class PCScript : MonoBehaviour, Receiver
         }
     }
 
-    public void RayHit()
+    public void RayHit(float distance)
     {
         hitTime = Time.time;
         PC1Image.sprite = PC1Texture1;
@@ -46,5 +46,6 @@ public class PCScript : MonoBehaviour, Receiver
     public void Activate()
     {
         this.GetComponent<AudioSource>().PlayOneShot(clip1);
+        Application.LoadLevel(1);
     }
 }

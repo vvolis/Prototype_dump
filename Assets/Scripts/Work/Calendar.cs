@@ -25,7 +25,7 @@ public class Calendar : MonoBehaviour, Receiver
         }
     }
 
-    public void RayHit()
+    public void RayHit(float distance)
     {
         hitTime = Time.time;
         interactTxt.enabled = true;

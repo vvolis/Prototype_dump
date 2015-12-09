@@ -20,7 +20,7 @@ public class Observatory : MonoBehaviour, Receiver
         Lamp.GetComponent<Lamps>().SelfDestruct();
         Destroy(this.gameObject, 0.85F);
     }
-    public void RayHit()
+    public void RayHit(float distance)
     {
         text.enabled = true;
     }
