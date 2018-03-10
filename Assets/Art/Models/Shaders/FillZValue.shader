@@ -1,4 +1,6 @@
-﻿// Copyright (C) Stanislaw Adaszewski, 2013
+﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
+// Copyright (C) Stanislaw Adaszewski, 2013
 // http://algoholic.eu
 
 Shader "Custom/FillZValue" {
@@ -38,7 +40,7 @@ Shader "Custom/FillZValue" {
 			
 			VertOut vert(AppData IN) {
 				VertOut o;
-				o.pos = mul(UNITY_MATRIX_MVP, IN.vertex);
+				o.pos = UnityObjectToClipPos(IN.vertex);
 				return o;
 			}
 			
